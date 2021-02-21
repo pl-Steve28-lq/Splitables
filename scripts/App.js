@@ -24,13 +24,13 @@ class App extends BaseCanvasApp {
 
     this.reset = new RoundButton(
       this.Width/15, this.Height/2 - this.Height/6,
-      this.Width/6, this.Height/8, "Reset", {}, '35px NanumSquare',
+      this.Width/6, this.Height/8, "Reset", {}, 'NanumSquare',
       this.mouse
     ).setOnClickListener(this.init.bind(this))
 
     this.upload = new RoundButton(
       this.Width/15, this.Height/2,
-      this.Width/6, this.Height/8, "Upload Image", {}, '23px NanumSquare',
+      this.Width/6, this.Height/8, "Upload Image", {}, 'NanumSquare',
       this.mouse
     ).setOnClickListener(() => alert("구현 예정입니당"))
   }

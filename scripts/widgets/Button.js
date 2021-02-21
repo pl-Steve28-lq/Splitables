@@ -26,7 +26,17 @@ export class Button extends View {
     ctx.strokeStyle = this.clrs.textcolor || 'black'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.font = this.font
+    let px = 40
+    while (1) {
+      if (px == 0) return
+      ctx.font = `${px}px ${this.font}`
+      let data = ctx.measureText(this.text)
+      if (
+        data.width < this.size.w+this.size.h/2 &&
+        data.actualBoundingBoxAscent + data.actualBoundingBoxDescent < this.size.h/2
+      ) break
+      px -= 1
+    }
     ctx.fillText(
       this.text,
       this.pos.x + this.size.w/2,
