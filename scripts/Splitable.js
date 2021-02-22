@@ -1,7 +1,9 @@
+import { Filter } from './Filter.js'
+
 export class Splitable {
-  constructor(x, y, r, spt, clr, idx) {
+  constructor(x, y, r, spt, clr, idx, filter) {
     Object.assign(this, {
-      pos: {x, y}, r, spt, clr, idx
+      pos: {x, y}, r, spt, clr, idx, filter
     })
   }
 
@@ -14,7 +16,7 @@ export class Splitable {
         res.push(
           new Splitable(
             this.pos.x - this.r*X/2, this.pos.y - this.r*Y/2,
-            this.r/2, this.spt+1, 'black', this.idx.concat(i)
+            this.r/2, this.spt+1, 'black', this.idx.concat(i), this.filter
           )
         )
       }
@@ -23,14 +25,7 @@ export class Splitable {
   }
 
   draw(ctx) {
-    ctx.fillStyle = this.clr
-    ctx.beginPath()
-    ctx.arc(
-      this.pos.x, this.pos.y,
-      this.r, 0, 2*Math.PI
-    )
-    ctx.closePath()
-    ctx.fill()
+    Filter.getFilter(this.filter, this)(ctx)
   }
 
   isMouseOn(mouse) {

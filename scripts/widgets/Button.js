@@ -9,6 +9,10 @@ export class Button extends View {
     })
   }
 
+  setText(txt) {
+    this.text = txt
+  }
+
   animate(ctx) {
     super.animate(ctx)
 

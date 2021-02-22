@@ -4,6 +4,7 @@ export class BaseCanvasApp {
       location.protocol = "https:" : null
     
     this.canvas = document.createElement('canvas')
+    this.canvas.setAttribute('id', 'canvas')
     document.body.appendChild(this.canvas)
     this.ctx = this.canvas.getContext('2d')
 
@@ -38,4 +39,6 @@ export class BaseCanvasApp {
   }
 
   init() {}
+  
+  id = name => document.getElementById(name)
 }

@@ -66,10 +66,12 @@ export class MouseManager {
   onDown(e) {
     if ((e.button == 0) || !e.button) {
       this.isClicked = true
+      this.pos = this.getEventPos(e)
       this.onClickBehavior(this.pos)
     }
     if (e.button == 2) {
       this.isRightClicked = true
+      this.pos = this.getEventPos(e)
       this.onRightClickBehavior(this.pos)
     }
   }

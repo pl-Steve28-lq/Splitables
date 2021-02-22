@@ -20,6 +20,7 @@ export class View {
         res = X && Y && mouse.isClicked && !this._clicked
     if (this._clicked && !mouse.isClicked) this._clicked = false
     else if (!this._clicked && mouse.isClicked) this._clicked = true
+    
     return res
   }
 }

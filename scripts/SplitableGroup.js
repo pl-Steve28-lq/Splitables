@@ -1,9 +1,10 @@
 import { Splitable } from './Splitable.js'
+import { Filter } from './Filter.js'
 
 export class SplitableGroup {
-  constructor(image, Width, Height, mouse) {
+  constructor(image, Width, Height, mouse, filter) {
     Object.assign(this, {
-      image, Width, Height, mouse,
+      image, Width, Height, mouse, filter,
       tmp: document.createElement('canvas'),
     })
 
@@ -68,7 +69,7 @@ export class SplitableGroup {
     this.splitables = [
       new Splitable(
         this.Width/2, this.Height/2,
-        this.Length/2, 0, this.askColor(0, 0, 0, [0]), [0]
+        this.Length/2, 0, this.askColor(0, 0, 0, [0]), [0], this.filter
       )
     ]
   }
@@ -142,5 +143,17 @@ export class SplitableGroup {
   toColor(r) {
     let alpha = r[3] ? ` ,${r[3]}` : ''
     return `rgb(${r[0] | 0}, ${r[1] | 0}, ${r[2] | 0}${alpha})`
+  }
+
+  getFilterName() {
+    let filter = Filter.getFilterName(this.filter)
+    return (filter[0].toUpperCase() + filter.slice(1)).replace(/_/g, ' ')
+  }
+
+  applyFilter(idx) {
+    this.filter = idx
+    this.splitables.forEach(s => {
+      s.filter = this.filter
+    })
   }
 }
